@@ -15,6 +15,8 @@ geih <- left_join(x = cg, y = ocu, by = c("directorio","secuencia_p","orden"))
 
 ## **[1.] Descriptivas**
 
+geih%>% select(inglabo,p6020) %>% skim()
+
 ### **1.1 Generales**
 
 ## **summary** ofrece una descripción general(quartil, media, mediana) de todas las columnas presentes.
@@ -35,6 +37,11 @@ summarise(promedio_inglabo = mean(inglabo, na.rm = T),
           media_inglabo = median(inglabo, na.rm = T),
           promedio_p6960 = mean(p6960, na.rm = T),
           media_p6960 = median(p6960, na.rm = T))
+
+## Ingreso laboral promedio por sexo y tipo de contrato
+geih %>%
+group_by(p6020, p6450) %>%
+summarise(mean_ing=mean(inglabo, na.rm=T))  
 
 ## **[2.] Visualizaciones**
 
